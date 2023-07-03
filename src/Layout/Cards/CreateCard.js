@@ -24,17 +24,14 @@ function CreateCard() {
 
     const handleSubmit = (event) => {
         event.preventDefault()
-        async function cardCreate(deckId, formData) {
             try {
-                await createCard(deckId, formData)
+                createCard(deckId, formData)
                 setFormData({...initialFormState})
             } catch (error) {
                 if (error.name !== "AbortError") {
                     throw error
                 }
             }
-        }
-        cardCreate()
     }
 
     useEffect(() => {
