@@ -4,7 +4,7 @@ import DeckForm from "./DeckForm"
 import Breadcrumb from "../Common/Breadcrumb"
 import { createDeck } from "../../utils/api"
 
-function CreateDeck() {
+function CreateDeck({ addDecktoStateFn }) {
     const initialFormState = {
         name: "",
         description: ""
@@ -24,6 +24,8 @@ function CreateDeck() {
         async function deckCreate() {
             try {
                 const newDeck = await createDeck(formData)
+                newDeck.cards = []
+                addDecktoStateFn(newDeck)
                 history.push(`/decks/${newDeck.id}`)
             } catch (error) {
                 if (error !== "AbortError") {

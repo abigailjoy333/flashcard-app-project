@@ -6,7 +6,7 @@ function DeckList({ decks }) {
     const handleDelete = async ({ target }) => {
         const confirm = window.confirm("Delete this deck? You will not be able to recover it.")
         if (confirm) {
-            const id = target.parentNode.value
+            const id = target.value
             await deleteDeck(id)
             window.location.reload()
         }
@@ -30,7 +30,7 @@ function DeckList({ decks }) {
                                 <div className = "row justify-content-between">
                                     <div className="col-4">
                                         <Link to={`/decks/${deck.id}`}>
-                                            <button className="btn btn-secondary mr-1"><i class="bi bi-eye mr-1"></i>View</button>
+                                            <button className="btn btn-secondary mr-1"><i className="bi bi-eye mr-1"></i>View</button>
                                         </Link>
                                         <Link to={`/decks/${deck.id}/study`}>
                                             <button className="btn btn-primary"><i className="bi bi-book mr-1"></i>Study</button>
