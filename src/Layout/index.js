@@ -15,11 +15,13 @@ import { listDecks } from "../utils/api/index"
 function Layout() {
   const [decks, setDecks] = useState([])
 
+  // function that handles adding to state that i can pass around 
+  const addDeck = (deck) => setDecks([...decks, deck])
+
   //load decks
   useEffect(() => {
     
     //declare abort Controller
-    setDecks([])
     const abortController = new AbortController()
     
     //loading of decks from API
@@ -46,7 +48,7 @@ function Layout() {
             <Home decks={decks}/>
           </Route>
           <Route path={"/decks/new"}>
-            <CreateDeck />
+            <CreateDeck addDecktoStateFn={addDeck}/>
           </Route>
           <Route path={"/decks/:deckId/cards/:cardId/edit"}>
             <EditCard />
